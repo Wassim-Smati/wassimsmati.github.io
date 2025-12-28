@@ -10,63 +10,72 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        /* ... (Le CSS reste le même que précédemment) ... */
         body {
             font-family: 'Inter', sans-serif;
             background: #050816;
             color: #e2e8f0;
             overflow-x: hidden;
         }
-
-        /* Effet de fond animé */
         .bg-gradient {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background: radial-gradient(circle at 50% 50%, #1e293b 0%, #050816 100%);
         }
-
         .blob {
-            position: absolute;
-            width: 500px; height: 500px;
+            position: absolute; width: 500px; height: 500px;
             background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-            filter: blur(80px);
-            border-radius: 50%;
-            opacity: 0.15;
-            z-index: -1;
+            filter: blur(80px); border-radius: 50%; opacity: 0.15; z-index: -1;
             animation: move 20s infinite alternate;
         }
-
         @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
+            from { transform: translate(-10%, -10%); } to { transform: translate(20%, 20%); }
         }
-
-        /* Glassmorphism */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;
         }
-
         .glass-card:hover {
-            border-color: #38bdf8;
-            transform: translateY(-10px);
+            border-color: #38bdf8; transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-
         .text-gradient {
             background: linear-gradient(90deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
         .skill-tag {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;
+        }
+        
+        /* NOUVEAU CSS POUR LA PHOTO */
+        .photo-container {
+            position: relative;
+            z-index: 1;
+        }
+        /* Le halo lumineux derrière la photo */
+        .photo-glow {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%; height: 110%;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            filter: blur(30px);
+            opacity: 0.3;
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse-glow 4s ease-in-out infinite alternate;
+        }
+        @keyframes pulse-glow {
+            0% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
+        }
+        /* Le cercle qui contient l'image */
+        .photo-frame {
+            padding: 8px; /* L'épaisseur du bord sombre */
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border-radius: 50%;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -85,133 +94,62 @@
         </div>
     </nav>
 
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
-        <div data-aos="fade-up">
-            <h2 class="text-sky-400 font-semibold mb-2 tracking-widest uppercase text-sm">Ingénieur Logiciel & IA</h2>
-            <h1 class="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight">Wassim <span class="text-gradient">Smati</span></h1>
-            <p class="max-w-2xl text-lg text-slate-400 mb-10">
-                Étudiant à <span class="text-white font-bold">Télécom Paris</span>. Passionné par le développement de solutions intelligentes et d'architectures robustes.
-            </p>
-            <div class="flex space-x-4 justify-center">
-                <a href="#projects" class="bg-sky-500 hover:bg-sky-600 px-8 py-3 rounded-full font-bold transition shadow-lg shadow-sky-500/20">Voir mes travaux</a>
-                <a href="https://linkedin.com" target="_blank" class="glass-card px-8 py-3 rounded-full font-bold hover:bg-white/10 transition">LinkedIn</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-24 px-6 max-w-7xl mx-auto">
-        <h3 class="text-3xl font-bold mb-16 text-center" data-aos="fade-right">Projets Sélectionnés</h3>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section id="about" class="min-h-screen flex items-center px-6 pt-28 md:pt-20 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
             
-            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-12 h-12 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-400 mb-6">
-                    <i class="fas fa-music text-xl"></i>
+            <div class="text-center md:text-left order-2 md:order-1" data-aos="fade-right">
+                <h2 class="text-sky-400 font-semibold mb-2 tracking-widest uppercase text-sm">Ingénieur Logiciel & IA</h2>
+                <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 tracking-tight">Wassim <span class="text-gradient">Smati</span></h1>
+                <p class="text-lg text-slate-400 mb-8 leading-relaxed">
+                    Étudiant en ingénierie à <span class="text-white font-bold">Télécom Paris</span>. Je construis des ponts entre algorithmes complexes et applications centrées sur l'utilisateur. Passionné par les systèmes distribués et le Deep Learning.
+                </p>
+                <div class="flex space-x-4 justify-center md:justify-start">
+                    <a href="#projects" class="bg-sky-500 hover:bg-sky-600 px-8 py-3 rounded-full font-bold transition shadow-lg shadow-sky-500/20">Voir mes travaux</a>
+                    <a href="https://linkedin.com" target="_blank" class="glass-card px-8 py-3 rounded-full font-bold hover:bg-white/10 transition flex items-center gap-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 </div>
-                <h4 class="text-xl font-bold mb-3">AI Playlist Curation</h4>
-                <p class="text-slate-400 text-sm mb-6">Application mobile générant des playlists basées sur l'analyse audio ou textuelle grâce à l'IA.</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">AI/NLP</span>
-                    <span class="skill-tag">FastAPI</span>
-                </div>
-                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
             </div>
 
-            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 mb-6">
-                    <i class="fas fa-shopping-cart text-xl"></i>
+            <div class="order-1 md:order-2 flex justify-center" data-aos="fade-left">
+                <div class="photo-container max-w-[280px] md:max-w-[350px]">
+                    <div class="photo-glow"></div>
+                    <div class="photo-frame">
+                        <img src="https://via.placeholder.com/400x400" alt="Wassim Smati" class="rounded-full w-full h-full object-cover border-2 border-slate-900/50">
+                    </div>
                 </div>
-                <h4 class="text-xl font-bold mb-3">Vinted Sorter Extension</h4>
-                <p class="text-slate-400 text-sm mb-6">Extension Chrome automatisant le tri par popularité sur Vinted. Amélioration de l'UX utilisateur.</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="skill-tag">JS</span>
-                    <span class="skill-tag">DOM API</span>
-                    <span class="skill-tag">UX</span>
-                </div>
-                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
-            </div>
-
-            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 mb-6">
-                    <i class="fas fa-chart-line text-xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3">Euro 2024 Predictions</h4>
-                <p class="text-slate-400 text-sm mb-6">Modèle prédictif utilisant la régression de Poisson et le Machine Learning pour le football.</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="skill-tag">Scikit-learn</span>
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">Stats</span>
-                </div>
-                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
-            </div>
-
-            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up">
-                <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-orange-400 mb-6">
-                    <i class="fas fa-robot text-xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3">RobotSim - Factory Simulator</h4>
-                <p class="text-slate-400 text-sm mb-6">Simulateur Java de logistique industrielle avec algorithme Dijkstra pour le pathfinding.</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">Algorithms</span>
-                    <span class="skill-tag">OOP</span>
-                </div>
-                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
-            </div>
-
-            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up">
-                <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-6">
-                    <i class="fas fa-eye text-xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3">Retinal Quality Assessment</h4>
-                <p class="text-slate-400 text-sm mb-6">Pipeline ML pour évaluer la qualité d'images rétiniennes via SVM et Computer Vision.</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="skill-tag">OpenCV</span>
-                    <span class="skill-tag">SVM</span>
-                    <span class="skill-tag">Medical AI</span>
-                </div>
-                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
             </div>
 
         </div>
     </section>
 
-    <section id="skills" class="py-24 px-6 bg-white/5">
+    <section id="skills" class="py-24 px-6 bg-white/5 mt-20">
         <div class="max-w-5xl mx-auto">
-            <h3 class="text-3xl font-bold mb-16 text-center">Expertises Techniques</h3>
+            <h3 class="text-3xl font-bold mb-16 text-center" data-aos="fade-up">Expertises Techniques</h3>
             <div class="grid md:grid-cols-2 gap-12">
-                <div>
+                <div data-aos="fade-right">
                     <h5 class="text-sky-400 font-bold mb-6">Languages & Backend</h5>
                     <div class="space-y-4 text-slate-300">
-                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
-                            <span>Python / Java / C++</span>
-                            <span class="text-xs text-sky-400 uppercase">Expert</span>
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/5 hover:border-sky-500/30 transition">
+                            <span>Python / Java / C++</span><span class="text-xs text-sky-400 uppercase font-semibold">Fort</span>
                         </div>
-                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
-                            <span>JS / TypeScript / SQL</span>
-                            <span class="text-xs text-sky-400 uppercase">Avancé</span>
+                         <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/5 hover:border-sky-500/30 transition">
+                            <span>JS / TypeScript / SQL</span><span class="text-xs text-sky-400 uppercase font-semibold">Avancé</span>
                         </div>
-                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
-                            <span>FastAPI / Flask</span>
-                            <span class="text-xs text-sky-400 uppercase">Confirmé</span>
+                         <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/5 hover:border-sky-500/30 transition">
+                            <span>FastAPI / Flask</span><span class="text-xs text-sky-400 uppercase font-semibold">Confirmé</span>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h5 class="text-emerald-400 font-bold mb-6">Data Science & Tools</h5>
+                <div data-aos="fade-left">
+                    <h5 class="text-emerald-400 font-bold mb-6">Data Science & IA</h5>
                     <div class="space-y-4 text-slate-300">
-                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
-                            <span>PyTorch / TensorFlow / Scikit-learn</span>
-                            <span class="text-xs text-emerald-400 uppercase">Expert</span>
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/5 hover:border-emerald-500/30 transition">
+                            <span>PyTorch / TensorFlow</span><span class="text-xs text-emerald-400 uppercase font-semibold">Fort</span>
                         </div>
-                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
-                            <span>Docker / Azure / Git</span>
-                            <span class="text-xs text-emerald-400 uppercase">Maîtrisé</span>
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/5 hover:border-emerald-500/30 transition">
+                            <span>Scikit-learn / Pandas</span><span class="text-xs text-emerald-400 uppercase font-semibold">Avancé</span>
                         </div>
-                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
-                            <span>Computer Vision (OpenCV)</span>
-                            <span class="text-xs text-emerald-400 uppercase">Confirmé</span>
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/5 hover:border-emerald-500/30 transition">
+                            <span>OpenCV / Computer Vision</span><span class="text-xs text-emerald-400 uppercase font-semibold">Confirmé</span>
                         </div>
                     </div>
                 </div>
@@ -219,31 +157,23 @@
         </div>
     </section>
 
-    <footer class="py-12 text-center border-t border-white/10">
-        <p class="text-slate-500 mb-6 italic">En quête de nouveaux défis en Software Engineering & Intelligence Artificielle.</p>
+    <footer class="py-12 text-center border-t border-white/10 bg-[#050816]">
         <div class="flex justify-center space-x-6 text-2xl mb-8">
-            <a href="https://github.com/WassimSmati" class="hover:text-sky-400 transition"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/WassimSmati" class="hover:text-sky-400 transition"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:wassim.smati@telecom-paris.fr" class="hover:text-sky-400 transition"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/" target="_blank" class="hover:text-sky-400 transition hover:scale-110 transform"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/" target="_blank" class="hover:text-sky-400 transition hover:scale-110 transform"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:wassim.smati@telecom-paris.fr" class="hover:text-sky-400 transition hover:scale-110 transform"><i class="fas fa-envelope"></i></a>
         </div>
-        <p class="text-xs text-slate-600">© 2024 Wassim Smati - Télécom Paris</p>
+        <p class="text-slate-500 text-sm mb-2">Conçu et développé par Wassim Smati.</p>
+        <p class="text-xs text-slate-600">© 2024 Tous droits réservés.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-        });
-
-        // Animation de texte (optionnelle)
+        AOS.init({ duration: 800, once: true, offset: 50 });
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(5, 8, 22, 0.9)';
-            } else {
-                nav.style.background = 'transparent';
-            }
+            if (window.scrollY > 50) { nav.style.background = 'rgba(5, 8, 22, 0.95)'; nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)'; } 
+            else { nav.style.background = 'rgba(255, 255, 255, 0.03)'; nav.style.boxShadow = 'none'; }
         });
     </script>
 </body>
