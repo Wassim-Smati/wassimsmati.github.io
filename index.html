@@ -1,26 +1,250 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <title>Washimu — Projets</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wassim Smati | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050816;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Effet de fond animé */
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #050816 100%);
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px; height: 500px;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-tag {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>Wassim</h1>
-  <p>Étudiant ingénieur · IA · Projets techniques</p>
-</header>
+    <div class="bg-gradient"></div>
+    <div class="blob"></div>
 
-<main>
-  <h2>Mes projets GitHub</h2>
-  <div id="projects" class="projects"></div>
-</main>
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center glass-card border-none rounded-none">
+        <div class="text-2xl font-extrabold tracking-tighter">WS<span class="text-sky-400">.</span></div>
+        <div class="hidden md:flex space-x-8 font-medium">
+            <a href="#about" class="hover:text-sky-400 transition">À propos</a>
+            <a href="#projects" class="hover:text-sky-400 transition">Projets</a>
+            <a href="#skills" class="hover:text-sky-400 transition">Skills</a>
+            <a href="mailto:wassim.smati@telecom-paris.fr" class="text-sky-400 border border-sky-400 px-4 py-1 rounded-full hover:bg-sky-400 hover:text-white transition">Contact</a>
+        </div>
+    </nav>
 
-<footer>
-  <p>© 2025 Wassim</p>
-</footer>
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
+        <div data-aos="fade-up">
+            <h2 class="text-sky-400 font-semibold mb-2 tracking-widest uppercase text-sm">Ingénieur Logiciel & IA</h2>
+            <h1 class="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight">Wassim <span class="text-gradient">Smati</span></h1>
+            <p class="max-w-2xl text-lg text-slate-400 mb-10">
+                Étudiant à <span class="text-white font-bold">Télécom Paris</span>. Passionné par le développement de solutions intelligentes et d'architectures robustes.
+            </p>
+            <div class="flex space-x-4 justify-center">
+                <a href="#projects" class="bg-sky-500 hover:bg-sky-600 px-8 py-3 rounded-full font-bold transition shadow-lg shadow-sky-500/20">Voir mes travaux</a>
+                <a href="https://linkedin.com" target="_blank" class="glass-card px-8 py-3 rounded-full font-bold hover:bg-white/10 transition">LinkedIn</a>
+            </div>
+        </div>
+    </section>
 
-<script src="projects.js"></script>
+    <section id="projects" class="py-24 px-6 max-w-7xl mx-auto">
+        <h3 class="text-3xl font-bold mb-16 text-center" data-aos="fade-right">Projets Sélectionnés</h3>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-400 mb-6">
+                    <i class="fas fa-music text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">AI Playlist Curation</h4>
+                <p class="text-slate-400 text-sm mb-6">Application mobile générant des playlists basées sur l'analyse audio ou textuelle grâce à l'IA.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">AI/NLP</span>
+                    <span class="skill-tag">FastAPI</span>
+                </div>
+                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 mb-6">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">Vinted Sorter Extension</h4>
+                <p class="text-slate-400 text-sm mb-6">Extension Chrome automatisant le tri par popularité sur Vinted. Amélioration de l'UX utilisateur.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="skill-tag">JS</span>
+                    <span class="skill-tag">DOM API</span>
+                    <span class="skill-tag">UX</span>
+                </div>
+                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 mb-6">
+                    <i class="fas fa-chart-line text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">Euro 2024 Predictions</h4>
+                <p class="text-slate-400 text-sm mb-6">Modèle prédictif utilisant la régression de Poisson et le Machine Learning pour le football.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Stats</span>
+                </div>
+                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-orange-400 mb-6">
+                    <i class="fas fa-robot text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">RobotSim - Factory Simulator</h4>
+                <p class="text-slate-400 text-sm mb-6">Simulateur Java de logistique industrielle avec algorithme Dijkstra pour le pathfinding.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Algorithms</span>
+                    <span class="skill-tag">OOP</span>
+                </div>
+                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl" data-aos="fade-up">
+                <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-6">
+                    <i class="fas fa-eye text-xl"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3">Retinal Quality Assessment</h4>
+                <p class="text-slate-400 text-sm mb-6">Pipeline ML pour évaluer la qualité d'images rétiniennes via SVM et Computer Vision.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="skill-tag">OpenCV</span>
+                    <span class="skill-tag">SVM</span>
+                    <span class="skill-tag">Medical AI</span>
+                </div>
+                <a href="#" class="text-sky-400 text-sm font-semibold hover:underline">Voir sur GitHub →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 px-6 bg-white/5">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-bold mb-16 text-center">Expertises Techniques</h3>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h5 class="text-sky-400 font-bold mb-6">Languages & Backend</h5>
+                    <div class="space-y-4 text-slate-300">
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
+                            <span>Python / Java / C++</span>
+                            <span class="text-xs text-sky-400 uppercase">Expert</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
+                            <span>JS / TypeScript / SQL</span>
+                            <span class="text-xs text-sky-400 uppercase">Avancé</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
+                            <span>FastAPI / Flask</span>
+                            <span class="text-xs text-sky-400 uppercase">Confirmé</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-emerald-400 font-bold mb-6">Data Science & Tools</h5>
+                    <div class="space-y-4 text-slate-300">
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
+                            <span>PyTorch / TensorFlow / Scikit-learn</span>
+                            <span class="text-xs text-emerald-400 uppercase">Expert</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
+                            <span>Docker / Azure / Git</span>
+                            <span class="text-xs text-emerald-400 uppercase">Maîtrisé</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl">
+                            <span>Computer Vision (OpenCV)</span>
+                            <span class="text-xs text-emerald-400 uppercase">Confirmé</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center border-t border-white/10">
+        <p class="text-slate-500 mb-6 italic">En quête de nouveaux défis en Software Engineering & Intelligence Artificielle.</p>
+        <div class="flex justify-center space-x-6 text-2xl mb-8">
+            <a href="https://github.com/WassimSmati" class="hover:text-sky-400 transition"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/WassimSmati" class="hover:text-sky-400 transition"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:wassim.smati@telecom-paris.fr" class="hover:text-sky-400 transition"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p class="text-xs text-slate-600">© 2024 Wassim Smati - Télécom Paris</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Animation de texte (optionnelle)
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(5, 8, 22, 0.9)';
+            } else {
+                nav.style.background = 'transparent';
+            }
+        });
+    </script>
 </body>
 </html>
